@@ -6,6 +6,9 @@ from dotenv import dotenv_values
 # Connect to the database
 config = dotenv_values(".env")
 
+print("script started Execution")
+print(config)
+
 connection = pymysql.connect(host=config['DB_HOST'],
                              user=config['DB_USER'],
                              password=config['DB_PWD'],
@@ -44,5 +47,6 @@ headers = {"APPKEY": config['APPKEY'], 'Accept': "application/json", "Content-Ty
 r = requests.post("https://cellcast.com.au/api/v3/send-sms", headers=headers, data={"sms_text": "Hi Hari, Vikky Testing", "numbers": todays_birthdays})
 # r = requests.post(config['URL'], data={"sms_text": "Hi Hari, Vikky Testing", "numbers": todays_birthdays})
 
+print(r.status_code, r.ok)
 
-print(todays_birthdays)
+print("Script ended execution.")
